@@ -658,7 +658,7 @@ inline std::vector<uint8_t> load_dxt(int type, DDSURFACEDESC2 &desc, IO& io) {
     // but now the lines are fucked! lets hack it correct
     std::vector<uint8_t> buf(width*4);
     for (int y = 0; y < height/2; y++) {
-        unsigned up = y*width*4, bot = (height-y)*width*4;
+        unsigned up = y*width*4, bot = (height-y-1)*width*4;
         memcpy(&buf.front(), &result[up], width*4);
         memmove(&result[up], &result[bot], width*4);
         memcpy(&result[bot], &buf.front(), width*4);
